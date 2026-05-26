@@ -1,2 +1,43 @@
-# TPI-Funcional-2026-Grupo-Numero-todavia_sin_numero-
-Repositorio del TP Integrador PyL (Paradigmas y Lenguajes).
+# TPI-Funcional-2026-Grupo31
+
+Repositorio del Trabajo Práctico Integrador de Paradigmas y Lenguajes (PyL).
+
+## Integrantes
+
+<!-- Completar con nombre, apellido y usuario de GitHub de cada integrante -->
+
+| Nombre y Apellido | Usuario GitHub |
+|---|---|
+| Milton Nahuel Rodriguez Rivas | MiltonRodx |
+| | |
+| | |
+| | |
+| | |
+
+## Lenguaje asignado (Fase 3)
+
+Haskell
+
+## Entregables
+
+- 🔗 Video demo (YouTube): <!-- agregar link -->
+- 📄 Informe: [`docs/INFORME.pdf`](docs/INFORME.pdf)
+
+## Estructura del repositorio
+
+```
+TPI-Funcional-2026-Grupo31/
+├── lisp/
+│   ├── core.lisp
+│   └── config.json
+├── comparativa/
+│   └── solucion.hs
+├── docs/
+│   ├── INFORME.pdf
+│   └── HONOR.md
+└── README.md
+```
+
+## Estado
+
+🚧 En desarrollo — entrega límite: martes 16 de junio de 2026.

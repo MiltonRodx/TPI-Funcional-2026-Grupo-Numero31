@@ -10,9 +10,10 @@ Repositorio del Trabajo Práctico Integrador de Paradigmas y Lenguajes (PyL).
 |---|---|
 | Milton Nahuel Rodriguez Rivas | miltonrodx |
 | Lautaro Sebastian Quintana Flores | lautaroflores31-dot |
+| Nestor Javier Nacimiento | maverick8585 |
 | Juliana Eva Fernandez | |
 | Adolfo Joaquin Jesus Rodriguez | |
-| Nestor Javier Nacimiento | |
+
 
 ## Lenguaje asignado (Fase 3)
 

@@ -16,9 +16,9 @@
 ;; CONSTANTES DE CONFIGURACIÓN (no son estado, son configuración)
 ;; Tip: defconstant es la forma correcta — no viola la restricción de inmutabilidad
 ;; ---------------------------------------------------------
-(defconstant +duracion-rojo+     ; TODO: valor en segundos según enunciado
-(defconstant +duracion-amarillo+ ; TODO
-(defconstant +duracion-verde+    ; TODO
+(defconstant +duracion-rojo+ 60)     ; TODO: valor en segundos según enunciado
+(defconstant +duracion-amarillo+ 6) ; TODO
+(defconstant +duracion-verde+ 30)    ; TODO
 ;; Tip: ¿podés calcular +duracion-ciclo-total+ a partir de las tres anteriores?
 
 
@@ -28,18 +28,33 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: transicion
-;; NATURALEZA: TODO — ¿tiene efectos secundarios?
-;; ESTRATEGIA: TODO — ¿cómo manejás los casos válidos e inválidos?
-;; IMPACTO: TODO
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Funcion Condicional (evalúa condiciones sobre los argumentos) 
+;; IMPACTO:    No destructiva
 ;; --------------------------------------------------------
 (defun transicion (color-actual cambiar-a)
-  "TODO: docstring — qué recibe, qué devuelve, qué pasa si la transición es inválida."
+  (cond 
+    ((and(eq color-actual 'en-rojo) (eq cambiar-a 'verde)) 
+        (list color-actual "cambiar-a-verde"))
+    
+    ((and(eq color-actual 'en-verde) (eq cambiar-a 'amarillo)) 
+        (list color-actual "cambiar-a-amarillo"))
+
+    ((and(eq color-actual 'en-amarillo) (eq cambiar-a 'rojo)) 
+        (list color-actual "cambiar-a-rojo"))
+
+     (t (list color-actual 'accion-por-defecto)) ; en caso de not-valid-argument
+    )
+)
+
+  ;; "TODO: docstring — qué recibe, qué devuelve, qué pasa si la transición es inválida."
   ;; Pistas:
   ;;   - ¿Qué transiciones son válidas? rojo->verde, verde->amarillo, amarillo->rojo
   ;;   - cond o case pueden ayudar para los casos
   ;;   - Para construir el string "cambiar-a-verde" mirá: concatenate, string-downcase, symbol-name
   ;;   - Si es inválida: devolver (list color-actual 'accion-por-defecto)
-  )
+
+
 
 
 ;; =========================================================

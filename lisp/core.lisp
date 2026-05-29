@@ -22,6 +22,8 @@ Ejemplo esperado:
 ((And (eq color_actual ‘verde)(eq cambiar_a ‘rojo)) (list color_actual  cambiar_a))
 (T color_actual “Error al ingresar colores vuelva a ejecutar la función”)
 ))
+
+
 # Requerimiento 2: Temporizador Automático
 - Para la implementación de un actuador que realizará el cambio de luces se necesita implementar un mecanismo automatizado de temporización. Se solicita implementar una función Timer, que recibirá el tiempo actual en formato tiempo Unix (o tiempo epoch).
 Desarrolle la función timer para automatizar las transiciones basadas en tiempo Unix:
@@ -112,6 +114,7 @@ Salida: Recomendación de optimización basada en estándares de ingeniería de 
 (T “La configuración actual de Semáforos  es la adecuada “)
 ))
 
+
 # Requerimiento 5: Planificación Temporal
 - Para la coordinación y planificación de la vía se necesita calcular cuantos ciclos se completan en determinada cantidad de minutos, por ejemplo en 15 minutos; se requiere una función ciclos-por-tiempo que calcule la cantidad de ciclos incluidos en ese tiempo.
 Implemente ciclos-por-tiempo:
@@ -130,6 +133,8 @@ Aplicación: Planificación de mantenimiento y análisis de capacidad
 (round (/ (* duracion 60)  216));duracion esta en minutos  por eso lo multiplicamos por 60 para pasarlo a segundos 
 “Error se debe ingresar  un numero”
 ))
+
+
 # Requerimiento 6: Informe de Distribución Temporal
 - Por cuestiones de planificación logística, se necesita un informe que indique el porcentaje de cada color que se tendrá en 1 hora. Dadas ciertas reglas de negocios o según las actuales. 
 Desarrolle una función que calcule la distribución porcentual de cada color en períodos de 1 hora:

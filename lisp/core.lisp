@@ -1,6 +1,7 @@
 
 # Requerimiento 1: Estados de Transición
-Implemente la función transicion que modele el cambio de estados del semáforo:
+
+- Implemente la función transicion que modele el cambio de estados del semáforo:
 Especificación:
 Entrada: color-actual (símbolo: en-rojo, en-amarillo, en-verde) y cambiar-a (símbolo del color destino: rojo, amarillo, verde)
 Salida: devuelve una lista con el estado y una acción a realizar, esta última como literal “cambiar-a-<color>”.
@@ -22,7 +23,7 @@ Ejemplo esperado:
 (T color_actual “Error al ingresar colores vuelva a ejecutar la función”)
 ))
 # Requerimiento 2: Temporizador Automático
-Para la implementación de un actuador que realizará el cambio de luces se necesita implementar un mecanismo automatizado de temporización. Se solicita implementar una función Timer, que recibirá el tiempo actual en formato tiempo Unix (o tiempo epoch).
+- Para la implementación de un actuador que realizará el cambio de luces se necesita implementar un mecanismo automatizado de temporización. Se solicita implementar una función Timer, que recibirá el tiempo actual en formato tiempo Unix (o tiempo epoch).
 Desarrolle la función timer para automatizar las transiciones basadas en tiempo Unix:
 Reglas de temporización:
 Rojo: 90 segundos
@@ -52,7 +53,7 @@ Comportamiento: Calcular automáticamente qué color debe estar activo en el tim
 
 
 # Requerimiento 3: Sistema de Auditoría
-El equipo de analistas forenses necesita poder determinar qué color tenía una luz a determinada hora. Se necesita implementar un mecanismo de registro de los diferentes cambios de estado de las luces durante la ejecución del programa. Se ha solicitado que para la versión actual se implemente una función que imprima en la terminal de ejecución el cambio de estados del semáforo.
+- El equipo de analistas forenses necesita poder determinar qué color tenía una luz a determinada hora. Se necesita implementar un mecanismo de registro de los diferentes cambios de estado de las luces durante la ejecución del programa. Se ha solicitado que para la versión actual se implemente una función que imprima en la terminal de ejecución el cambio de estados del semáforo.
 Implemente un mecanismo de logging para análisis forense de tráfico:
 Especificación:
 Función que registre cada cambio de estado
@@ -75,7 +76,7 @@ Propósito: Permitir reconstrucción histórica de estados del semáforo
 
 
 # Requerimiento 4: Análisis de Ciclos Semafóricos
-Para la coordinación y planificación de la vía se necesita calcular cuántos ciclos, transición entre rojo a rojo, se realizarán pasado un determinado tiempo. A la hora de determinar la duración de un ciclo semafórico se acostumbra a tener en cuenta la psicología del conductor, según la cual, ciclos menores de 35 segundos o mayores de 150 segundos se acomodan difícilmente a la mentalidad del usuario de la vía pública, por lo que tienden a evitarse. Por lo que se solicita implementar una función duracion-ciclo que calcule la duración que tendrá cada ciclo con las reglas de negocio actuales y una funcion de recomendacion sobre la duración del ciclo. 
+- Para la coordinación y planificación de la vía se necesita calcular cuántos ciclos, transición entre rojo a rojo, se realizarán pasado un determinado tiempo. A la hora de determinar la duración de un ciclo semafórico se acostumbra a tener en cuenta la psicología del conductor, según la cual, ciclos menores de 35 segundos o mayores de 150 segundos se acomodan difícilmente a la mentalidad del usuario de la vía pública, por lo que tienden a evitarse. Por lo que se solicita implementar una función duracion-ciclo que calcule la duración que tendrá cada ciclo con las reglas de negocio actuales y una funcion de recomendacion sobre la duración del ciclo. 
 Desarrolle funciones para análisis de eficiencia del sistema:
 4a. Función duracion-ciclo
 Entrada: un numero determinado de segundos
@@ -112,7 +113,7 @@ Salida: Recomendación de optimización basada en estándares de ingeniería de 
 ))
 
 # Requerimiento 5: Planificación Temporal
-Para la coordinación y planificación de la vía se necesita calcular cuantos ciclos se completan en determinada cantidad de minutos, por ejemplo en 15 minutos; se requiere una función ciclos-por-tiempo que calcule la cantidad de ciclos incluidos en ese tiempo.
+- Para la coordinación y planificación de la vía se necesita calcular cuantos ciclos se completan en determinada cantidad de minutos, por ejemplo en 15 minutos; se requiere una función ciclos-por-tiempo que calcule la cantidad de ciclos incluidos en ese tiempo.
 Implemente ciclos-por-tiempo:
 Especificación:
 Entrada: Duración en minutos
@@ -130,7 +131,7 @@ Aplicación: Planificación de mantenimiento y análisis de capacidad
 “Error se debe ingresar  un numero”
 ))
 # Requerimiento 6: Informe de Distribución Temporal
-Por cuestiones de planificación logística, se necesita un informe que indique el porcentaje de cada color que se tendrá en 1 hora. Dadas ciertas reglas de negocios o según las actuales. 
+- Por cuestiones de planificación logística, se necesita un informe que indique el porcentaje de cada color que se tendrá en 1 hora. Dadas ciertas reglas de negocios o según las actuales. 
 Desarrolle una función que calcule la distribución porcentual de cada color en períodos de 1 hora:
 Especificación:
 Salida: Porcentajes de tiempo para rojo, amarillo y verde

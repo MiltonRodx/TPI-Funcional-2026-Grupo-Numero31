@@ -154,18 +154,32 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: distribucion-temporal
-;; NATURALEZA: TODO
-;; ESTRATEGIA: TODO — el enunciado pide usar funciones de orden superior acá
-;; IMPACTO: TODO
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Función de orden superior
+;; IMPACTO: No destructiva
 ;; --------------------------------------------------------
 (defun distribucion-temporal ()
-  "TODO: docstring — salida: porcentajes de rojo, amarillo y verde en 1 hora."
+  (let ((ciclos-por-hora (ciclos-por-tiempo 60)))
+    (mapcar
+      #'(lambda (x)
+          (cons (car x)
+            (* (/ (* (cdr x) ciclos-por-hora) 3600.0) 100.0))
+        )
+      
+      (list
+        (cons 'rojo +duracion-rojo+)
+        (cons 'amarillo +duracion-amarillo+)
+        (cons 'verde +duracion-verde+)
+      )
+    )
+  )
+)
   ;; Pistas:
   ;;   - 1 hora = 3600 segundos
   ;;   - ¿Cuántos ciclos completos entran en 3600 segundos?
   ;;   - Para cada color: (duracion-color * ciclos-en-hora) / 3600 * 100
   ;;   - mapcar sobre una lista de pares (color . duracion) es la forma funcional
-  )
+  ;; Devolver una lista? en una hora: porcentajes de: rojo, amarillo y verde
 
 
 ;; =========================================================

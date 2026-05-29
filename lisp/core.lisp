@@ -14,9 +14,17 @@
 ;; ---------------------------------------------------------
 ; CONFIGURACION DE PACKAGE (Para entorno de desarrollo VS Code + Alive)
 (defpackage :semaforo
-  (:use :cl))
+  (:use :cl)
+  (:export 
+    #:transicion
+    #:semaforo-timer
+    #:log-cambio-estado
+    #:duracion-ciclo
+    #:recomendacion-ciclo
+    #:ciclos-por-tiempo
+    #:distribucion-temporal))
 
-(in-package :semaforo)
+
 
 ;; ---------------------------------------------------------
 ;; CONSTANTES DE CONFIGURACIÓN (no son estado, son configuración)
@@ -66,7 +74,7 @@
 ;; ESTRATEGIA: Funcion Condicional  (evalúa condiciones sobre los argumentos) 
 ;; IMPACTO: No destructiva          (solo retorna un symbol)
 ;; --------------------------------------------------------
-(defun timer (timestamp)
+(defun semaforo-timer (timestamp)
   (let ((offset (mod timestamp +duracion-ciclo-total+)))
     (cond
       ((<= 0 offset 89) 'en-rojo)
@@ -98,17 +106,13 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: duracion-ciclo
-;; NATURALEZA: TODO
+;; NATURALEZA: 
 ;; ESTRATEGIA: TODO
 ;; IMPACTO: TODO
 ;; --------------------------------------------------------
 (defun duracion-ciclo (segundos)
-  "TODO: docstring — ¿qué representa el argumento segundos acá?"
-  ;; Lógica sería:
-  ;;   - Un ciclo = rojo + amarillo + verde
-  ;;   - floor hace división entera
-  ;;   - ¿Qué tiene sentido devolver? ¿la duración del ciclo? ¿cuántos ciclos caben?
-  )
+  (list (nth-value 0 (floor segundos +duracion-ciclo-total+)) (recomendacion-ciclo +duracion-ciclo-total+))
+)
 
 
 ;; =========================================================
@@ -178,6 +182,7 @@
 ;; =========================================================
 
 (defun run-ejemplos ()
-  "Ejecuta todos los ejemplos de QA."
   ;; TODO: completar cuando cada función esté implementada
+
+
   )

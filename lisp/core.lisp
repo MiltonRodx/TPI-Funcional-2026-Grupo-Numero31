@@ -87,8 +87,18 @@
 ;; IMPACTO: No Destructiva
 ;; --------------------------------------------------------
 (defun log-cambio-estado (epoch color-anterior color-nuevo)
-  (format t "Tiempo ~a: la luz ha cambiado de ~a a ~a~%" 
-          epoch color-anterior color-nuevo))
+  (cond
+    ((integerp epoch)
+      (format t "Tiempo ~a: la luz ha cambiado de ~a a ~a~%" 
+          (local-time:format-timestring nil 
+            (local-time:unix-to-timestamp epoch)
+            :format '(:year "-" (:month 2) "-" (:day 2) " " (:hour 2) ":" (:min 2) ":" (:sec 2)))
+          color-anterior
+          color-nuevo
+      )
+    )
+  )
+)
 
 
 ;; =========================================================

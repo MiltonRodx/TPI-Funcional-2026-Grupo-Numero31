@@ -139,16 +139,13 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: ciclos-por-tiempo
-;; NATURALEZA: TODO
-;; ESTRATEGIA: TODO
-;; IMPACTO: TODO
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Funcion Simple
+;; IMPACTO: No Destructiva
 ;; --------------------------------------------------------
 (defun ciclos-por-tiempo (minutos)
-  "TODO: docstring."
-  ;; Pistas:
-  ;;   - Convertí minutos a segundos primero
-  ;;   - floor da la división entera
-  )
+    (nth-value 0 (floor (* minutos 60) +duracion-ciclo-total+))
+)
 
 
 ;; =========================================================

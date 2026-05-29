@@ -21,8 +21,8 @@ Marque con una X la opción que mejor describa su situación para cada component
 
 ---
 **Declaración Jurada:** Al subir este archivo al repositorio, declaro bajo compromiso de honor que las marcas anteriores reflejan fielmente mi participación y la naturaleza del desarrollo de este trabajo práctico. Entiendo que la cátedra cruzará esta declaración con la correcta clasificación en comentarios del código y con mi desempeño en la defensa oral/video.
-
-
+<br>
+<br>
 
 
 ### Integrante: [RODRIGUEZ RIVAS MILTON NAHUEL] - Usuario GitHub: [MILTONRODX]

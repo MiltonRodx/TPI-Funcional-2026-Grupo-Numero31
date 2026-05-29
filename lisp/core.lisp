@@ -11,19 +11,6 @@
 ;;;   - Toda iteración via recursividad de cola o funciones de orden superior
 ;;; =========================================================
 
-;; ---------------------------------------------------------
-; CONFIGURACION DE PACKAGE (Para entorno de desarrollo VS Code + Alive)
-(defpackage :semaforo
-  (:use :cl)
-  (:export 
-    #:transicion
-    #:semaforo-timer
-    #:log-cambio-estado
-    #:duracion-ciclo
-    #:recomendacion-ciclo
-    #:ciclos-por-tiempo
-    #:distribucion-temporal))
-
 
 
 ;; ---------------------------------------------------------
@@ -75,11 +62,15 @@
 ;; IMPACTO: No destructiva          (solo retorna un symbol)
 ;; --------------------------------------------------------
 (defun semaforo-timer (timestamp)
-  (let ((offset (mod timestamp +duracion-ciclo-total+)))
-    (cond
-      ((<= 0 offset 89) 'en-rojo)
-      ((<= 90 offset 95) 'en-amarillo)
-      ((<= 96 offset 215) 'en-verde)
+  (cond
+    ((integerp timestamp)
+      (let ((offset (mod timestamp +duracion-ciclo-total+)))
+        (cond
+          ((<= 0 offset 89) 'en-rojo)
+          ((<= 90 offset 95) 'en-amarillo)
+          ((<= 96 offset 215) 'en-verde)
+        )
+      )
     )
   )
 )
@@ -111,8 +102,11 @@
 ;; IMPACTO: No destructiva
 ;; --------------------------------------------------------
 (defun duracion-ciclo (segundos)
-    (list (nth-value 0 (floor segundos +duracion-ciclo-total+)) (recomendacion-ciclo +duracion-ciclo-total+))
+  (cond
+    ((integerp segundos)
+      (list (nth-value 0 (floor segundos +duracion-ciclo-total+)) (recomendacion-ciclo +duracion-ciclo-total+)))
   )
+)
 
 
 ;; =========================================================
@@ -127,9 +121,12 @@
 ;; --------------------------------------------------------
 (defun recomendacion-ciclo (duracion)
     (cond
-      ((< duracion 35) 'ciclo-corto)
-      ((<= 35 duracion 150) 'ciclo-optimo)
-      (t 'ciclo-largo)
+      ((integerp duracion)
+      (cond
+        ((< duracion 35) 'ciclo-corto)
+        ((<= 35 duracion 150) 'ciclo-optimo)
+        (t 'ciclo-largo))
+      )
     )
 )
 
@@ -144,7 +141,11 @@
 ;; IMPACTO: No Destructiva
 ;; --------------------------------------------------------
 (defun ciclos-por-tiempo (minutos)
-    (nth-value 0 (floor (* minutos 60) +duracion-ciclo-total+))
+  (cond
+    ((integerp minutos)
+      (nth-value 0 (floor (* minutos 60) +duracion-ciclo-total+))
+    )
+  )
 )
 
 
@@ -174,13 +175,6 @@
     )
   )
 )
-  ;; Pistas:
-  ;;   - 1 hora = 3600 segundos
-  ;;   - ¿Cuántos ciclos completos entran en 3600 segundos?
-  ;;   - Para cada color: (duracion-color * ciclos-en-hora) / 3600 * 100
-  ;;   - mapcar sobre una lista de pares (color . duracion) es la forma funcional
-  ;; Devolver una lista? en una hora: porcentajes de: rojo, amarillo y verde
-
 
 ;; =========================================================
 ;; REQUERIMIENTO 7: Ejemplos de uso / QA
@@ -192,7 +186,52 @@
 ;; =========================================================
 
 (defun run-ejemplos ()
-  ;; TODO: completar cuando cada función esté implementada
+  ;; *** EJEMPLOS DE IMPLEMENTACION DE LOS REQUERIMIENTOS
+  ;; ** Requerimiento 1:
+  (format t "*** Requerimiento 1: *** ~%")
+  (format t "Camino Normal: ~a ~%" (transicion 'en-rojo 'verde))
+  (format t "Camino alternativo: ~a% ~%" (transicion 'en-verde 'verde))
+  (format t "Camino por error: ~a ~%~%" (transicion 'hola 'mundo))
+  (format t "---------------------------------------------------~%")
 
+  ;; ** Requerimiento 2:
+  (format t "*** Requerimiento 2: *** ~%")
+  (format t "Camino Normal: ~a ~%" (semaforo-timer 200000))
+  (format t "Camino alternativo: ~a% ~%" (semaforo-timer 2049340.02))
+  (format t "Camino por error: ~a ~%~%" (semaforo-timer 'symbol-malintencionado))
+  (format t "---------------------------------------------------~%")
 
-  )
+  ;; ** Requerimiento 3:
+  (format t "*** Requerimiento 3: *** ~%")
+  (format t "Camino Normal: ~a ~%" (log-cambio-estado 200000 'rojo 'verde))
+  (format t "Camino alternativo: ~a% ~%" (log-cambio-estado 20394994 "en rojo" "verde"))
+  (format t "Camino por error: ~a ~%~%" (log-cambio-estado 'timestampthing 'symbol 'other-symbol))
+  (format t "---------------------------------------------------~%")
+
+  ;; ** Requerimiento 4a:
+  (format t "*** Requerimiento 4a: *** ~%")
+  (format t "Camino Normal: ~a ~%" (duracion-ciclo 2000))
+  (format t "Camino alternativo: ~a% ~%" (duracion-ciclo 2000.0))
+  (format t "Camino por error: ~a ~%~%" (duracion-ciclo 'dosmil))
+  (format t "---------------------------------------------------~%")
+
+  ;; ** Requerimiento 4b:
+  (format t "*** Requerimiento 4b: *** ~%")
+  (format t "Camino Normal: ~a ~%" (recomendacion-ciclo 200))
+  (format t "Camino alternativo: ~a% ~%" (recomendacion-ciclo 2000.0))
+  (format t "Camino por error: ~a ~%~%" (recomendacion-ciclo 'dosmil))
+  (format t "---------------------------------------------------~%")
+  
+  ;; ** Requerimiento 5:
+  (format t "*** Requerimiento 5: *** ~%")
+  (format t "Camino Normal: ~a ~%" (ciclos-por-tiempo 300))
+  (format t "Camino alternativo: ~a% ~%" (ciclos-por-tiempo 300.0))
+  (format t "Camino por error: ~a ~%~%" (ciclos-por-tiempo 'trescientos))
+  (format t "---------------------------------------------------~%")
+
+  ;; ** Requerimiento 6:
+  (format t "*** Requerimiento 6: *** ~%")
+  (format t "Camino Normal: ~a ~%" (distribucion-temporal))
+  (format t "Camino alternativo y por error no hay (no necesita argumentos) ~%")
+  (format t "---------------------------------------------------~%")
+)

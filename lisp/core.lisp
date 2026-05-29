@@ -106,13 +106,13 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: duracion-ciclo
-;; NATURALEZA: 
-;; ESTRATEGIA: TODO
-;; IMPACTO: TODO
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional
+;; IMPACTO: No destructiva
 ;; --------------------------------------------------------
 (defun duracion-ciclo (segundos)
-  (list (nth-value 0 (floor segundos +duracion-ciclo-total+)) (recomendacion-ciclo +duracion-ciclo-total+))
-)
+    (list (nth-value 0 (floor segundos +duracion-ciclo-total+)) (recomendacion-ciclo +duracion-ciclo-total+))
+  )
 
 
 ;; =========================================================
@@ -121,18 +121,17 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: recomendacion-ciclo
-;; NATURALEZA: TODO
-;; ESTRATEGIA: TODO
-;; IMPACTO: TODO
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional
+;; IMPACTO: No destructiva
 ;; --------------------------------------------------------
 (defun recomendacion-ciclo (duracion)
-  "TODO: docstring."
+     "TODO: docstring."
   ;; Pistas:
   ;;   - Rango óptimo según enunciado: 35 a 150 segundos
   ;;   - cond con tres casos: muy corto, muy largo, óptimo
   ;;   - Devolvé símbolos descriptivos
-  )
-
+)
 
 ;; =========================================================
 ;; REQUERIMIENTO 5: Planificación Temporal

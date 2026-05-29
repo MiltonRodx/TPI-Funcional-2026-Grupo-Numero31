@@ -122,15 +122,15 @@
 ;; --------------------------------------------------------
 ;; FUNCIÓN: recomendacion-ciclo
 ;; NATURALEZA: Pura
-;; ESTRATEGIA: Condicional
+;; ESTRATEGIA: Funcion Condicional
 ;; IMPACTO: No destructiva
 ;; --------------------------------------------------------
 (defun recomendacion-ciclo (duracion)
-     "TODO: docstring."
-  ;; Pistas:
-  ;;   - Rango óptimo según enunciado: 35 a 150 segundos
-  ;;   - cond con tres casos: muy corto, muy largo, óptimo
-  ;;   - Devolvé símbolos descriptivos
+    (cond
+      ((< duracion 35) 'ciclo-corto)
+      ((<= 35 duracion 150) 'ciclo-optimo)
+      (t 'ciclo-largo)
+    )
 )
 
 ;; =========================================================

@@ -83,17 +83,13 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: log-cambio-estado
-;; NATURALEZA: TODO — ¿escribir en pantalla es un efecto secundario?
-;; ESTRATEGIA: TODO
-;; IMPACTO: TODO
+;; NATURALEZA: No Pura     (Escribe por pantalla/terminal)
+;; ESTRATEGIA: Funcion De Efecto Secundario
+;; IMPACTO: No Destructiva
 ;; --------------------------------------------------------
 (defun log-cambio-estado (epoch color-anterior color-nuevo)
-  "TODO: docstring."
-  ;; Pistas:
-  ;;   - format t imprime en stdout
-  ;;   - El formato pedido: "Tiempo <epoch>: la luz ha cambiado de <anterior> a <nuevo>"
-  ;;   - ~a en format es el placeholder, ~% es salto de línea
-  )
+  (format t "Tiempo ~a: la luz ha cambiado de ~a a ~a~%" 
+          epoch color-anterior color-nuevo))
 
 
 ;; =========================================================

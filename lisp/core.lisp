@@ -98,17 +98,27 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: duracion-ciclo
-;; NATURALEZA: TODO
-;; ESTRATEGIA: TODO
-;; IMPACTO: TODO
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional
+;; IMPACTO: No destructiva
 ;; --------------------------------------------------------
 (defun duracion-ciclo (segundos)
-  "TODO: docstring — ¿qué representa el argumento segundos acá?"
+(cond 
+  ((< segundos 35) (list +duracion-ciclo-total+ segundos “ciclo demasiado corto”))
+  ((> segundos 150) (list +duracion-ciclo-total+ segundos “ciclo demasiado largo”))
+  (T(list +duracion-ciclo-total+ segundos  “Ciclo dentro del rango optimo”))
+  ))
+  "TODO: docstring — ¿qué representa el argumento segundos acá? Duracion de ciclo propuesta"
   ;; Lógica sería:
-  ;;   - Un ciclo = rojo + amarillo + verde
-  ;;   - floor hace división entera
+  ;;   - Un ciclo = rojo + amarillo + verde = en la variable +duracion-ciclo-total+
+  ;;   - floor hace división entera esto hara el requerimiento 5?
   ;;   - ¿Qué tiene sentido devolver? ¿la duración del ciclo? ¿cuántos ciclos caben?
   )
+"TODO: docstring."
+  ;; Pistas:
+  ;;   - Rango óptimo según enunciado: 35 a 150 segundos
+  ;;   - cond con tres casos: muy corto, muy largo, óptimo
+  ;;   - Devolvé símbolos descriptivos
 
 
 ;; =========================================================
@@ -117,18 +127,16 @@
 
 ;; --------------------------------------------------------
 ;; FUNCIÓN: recomendacion-ciclo
-;; NATURALEZA: TODO
-;; ESTRATEGIA: TODO
-;; IMPACTO: TODO
+;; NATURALEZA: Pura
+;; ESTRATEGIA: Condicional
+;; IMPACTO: No destructiva
 ;; --------------------------------------------------------
 (defun recomendacion-ciclo (duracion)
-  "TODO: docstring."
-  ;; Pistas:
-  ;;   - Rango óptimo según enunciado: 35 a 150 segundos
-  ;;   - cond con tres casos: muy corto, muy largo, óptimo
-  ;;   - Devolvé símbolos descriptivos
-  )
-
+    (cond
+((< duracion 35) “Aumentar la duracion del ciclo”)
+((> duracion 150) “ Reducir la duracion  del ciclo”)
+(t “La configuración actual de Semáforos  es la adecuada “)
+))
 
 ;; =========================================================
 ;; REQUERIMIENTO 5: Planificación Temporal

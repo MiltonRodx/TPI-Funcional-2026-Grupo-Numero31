@@ -20,7 +20,8 @@
 (defconstant +duracion-rojo+ 90)
 (defconstant +duracion-amarillo+ 6)
 (defconstant +duracion-verde+ 120)
-(defconstant +duracion-ciclo-total+ 216)
+(defconstant +duracion-ciclo-total+ 222)
+(defconstant +duracion-intermitencia+ 3)
 
 
 ;; =========================================================
@@ -35,7 +36,20 @@
 ;; --------------------------------------------------------
 (defun transicion (color-actual cambiar-a)
   (cond 
-    ((and(eq color-actual 'en-rojo) (eq cambiar-a 'verde)) 
+    ((and(eq color-actual 'en-rojo) (eq cambiar-a 'intermitencia)) 
+        (list color-actual "cambiar-a-intermitencia"))
+    
+    ((and(eq color-actual 'en-intermitencia) (eq cambiar-a 'verde))
+        (list color-actual "cambiar-a-verde"))
+    
+    ((and(eq color-actual 'en-verde) (eq cambiar-a 'intermitencia)) 
+        (list color-actual "cambiar-a-intermitencia"))
+
+    ((and(eq color-actual 'en-intermitencia) (eq cambiar-a 'amarillo)) 
+        (list color-actual "cambiar-a-amarillo"))
+
+    ; originales:
+    ((and(eq color-actual 'en-rojo) (eq cambiar-a 'verde))
         (list color-actual "cambiar-a-verde"))
     
     ((and(eq color-actual 'en-verde) (eq cambiar-a 'amarillo)) 
@@ -63,9 +77,9 @@
 ;; --------------------------------------------------------
 
 ;; 0  - 89  → en-rojo
-;; 90 - 92  → intermitente
+;; 90 - 92  → intermitencia
 ;; 93 - 212 → en-verde
-;; 213- 215 → intermitente
+;; 213- 215 → intermitencia
 ;; 216- 221 → en-amarillo
 
 
@@ -75,9 +89,9 @@
       (let ((offset (mod timestamp +duracion-ciclo-total+)))
         (cond
           ((<= 0 offset 89) 'en-rojo)
-          ((<= 90 offset 92) 'intermitente)
+          ((<= 90 offset 92) 'intermitencia)
           ((<= 93 offset 212) 'en-verde)
-          ((<= 213 offset 215) 'intermitente)
+          ((<= 213 offset 215) 'intermitencia)
           ((<= 216 offset 221) 'en-amarillo)
         )
       )
@@ -191,6 +205,7 @@
         (cons 'rojo +duracion-rojo+)
         (cons 'amarillo +duracion-amarillo+)
         (cons 'verde +duracion-verde+)
+        (cons 'intermitencia (* 2 +duracion-intermitencia+))  ; 6 segundos en total (dos períodos)
       )
     )
   )

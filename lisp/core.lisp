@@ -244,4 +244,49 @@
   (format t "Camino Normal: ~a ~%" (distribucion-temporal))
   (format t "Camino alternativo y por error no hay (no necesita argumentos) ~%")
   (format t "---------------------------------------------------~%")
+
+
+  ;; ** Iteración 2:
+  ;; Sistema de Persistencia sobre Archivos de texto Plano:
+  (informe '((123923 rojo verde) (29349234 amarillo rojo) (2032032 rojo verde)))
+)
+
+
+
+
+
+
+;; =========================================================
+;; ITERACION 2:   Implementar una funcion extra
+;; =========================================================
+;;
+;; --------------------------------------------------------
+;; FUNCIÓN: informe
+;; NATURALEZA: No Pura
+;; ESTRATEGIA: Función de orden superior
+;; IMPACTO: No Destructiva
+;; --------------------------------------------------------
+
+(defun informe (datos)
+  (with-open-file (stream "informe-ejecucion-semaforo.txt" :direction :output)
+    (format stream "Informe de Ejecución del Sistema Semafórico~%")
+    (format stream "=========================================~%")
+    ;; Implementar iteración sobre datos y formateo
+    ;; Ejemplo de línea: "2024-06-04 14:30:15 - Transición: ROJO → VERDE"
+
+    (mapcar
+      #'(lambda (x)
+          (format stream "~a - Transición: ~a -> ~a~%" 
+              (local-time:format-timestring nil 
+            (local-time:unix-to-timestamp (car x))
+            :format '(:year "-" (:month 2) "-" (:day 2) " " (:hour 2) ":" (:min 2) ":" (:sec 2)))
+
+            (cadr x)    ; color-anterior
+            (caddr x)   ; color-nuevo
+          )  
+        ) datos
+    ) 
+  
+    (format stream "~% --- Fin del Informe ---")
+  )
 )

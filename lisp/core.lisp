@@ -61,14 +61,24 @@
 ;; ESTRATEGIA: Funcion Condicional  (evalúa condiciones sobre los argumentos) 
 ;; IMPACTO: No destructiva          (solo retorna un symbol)
 ;; --------------------------------------------------------
+
+;; 0  - 89  → en-rojo
+;; 90 - 92  → intermitente
+;; 93 - 212 → en-verde
+;; 213- 215 → intermitente
+;; 216- 221 → en-amarillo
+
+
 (defun semaforo-timer (timestamp)
   (cond
     ((integerp timestamp)
       (let ((offset (mod timestamp +duracion-ciclo-total+)))
         (cond
           ((<= 0 offset 89) 'en-rojo)
-          ((<= 90 offset 95) 'en-amarillo)
-          ((<= 96 offset 215) 'en-verde)
+          ((<= 90 offset 92) 'intermitente)
+          ((<= 93 offset 212) 'en-verde)
+          ((<= 213 offset 215) 'intermitente)
+          ((<= 216 offset 221) 'en-amarillo)
         )
       )
     )

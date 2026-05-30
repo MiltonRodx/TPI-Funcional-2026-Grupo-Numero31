@@ -42,3 +42,8 @@ TPI-Funcional-2026-Grupo31/
 ## Estado
 
 🚧 En desarrollo — entrega límite: martes 16 de junio de 2026.
+
+
+## Como Usar
+* Si no funciona algo, ejecutar: (load "lisp/core.lisp") -> En el REPL
+* (ql:quickload :local-time)   en el REPL para local-time (usando quicklisp)
